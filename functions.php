@@ -1,17 +1,25 @@
 <?php
 
 // Connect to the database and return the database object
+// Set environmental variables for server in httpd.conf 
+// https://httpd.apache.org/docs/2.4/env.html
+// Example: 
+// SetEnv DB_HOST localhost
+// SetEnv DB_NAME your_database_name
+// SetEnv DB_USER your_username
+// SetEnv DB_PWD your_password
+// to access use: $_SERVER['EnvVar']
 function connect()
 {
     // Set the hostname for CodeCademy's platform
-    $hostname = '/tmp';
+    $hostname = $_SERVER['DB_HOST'];
 
     // Set the database name
-    $dbname = 'ccuser';
+    $dbname = $_SERVER['DB_NAME'];
 
     // Set the username and password with permissions to the database
-    $username = 'ccuser';
-    $password = 'pass';
+    $username = $_SERVER['DB_USER'];
+    $password = $_SERVER['DB_PWD'];
 
     // Create the DSN (data source name) by combining the database type, hostname and dbname
     $dsn = "pgsql:host=$hostname;dbname=$dbname";
